@@ -1,5 +1,5 @@
-import time
-from test_lesson_1.test_auth import test_auth_positive
+# import time
+from test_auth import user_auth
 from selenium.common import NoSuchElementException
 
 BUTTON_ADD_TO_CART = ('xpath', '//button[text()="ADD TO CART"]')
@@ -10,14 +10,14 @@ ITEMS_IN_THE_BASKET = ('xpath', '//div[@class="cart_item"]')
 
 
 # Добавление товара в корзину через каталог
-def test_add_item_from_catalog(browser, test_auth_positive):
+def test_add_item_from_catalog(browser, user_auth):
     browser.find_element(*BUTTON_ADD_TO_CART).click()
     basket_items = browser.find_element(*BASKET_ITEMS).text
     assert basket_items == '1', f"There is more or less item in the basket. {basket_items} not equal 1"
 
 
 # Удаление товара из корзины через корзину
-def test_delete_item_from_the_basket(browser, test_auth_positive):
+def test_delete_item_from_the_basket(browser, user_auth):
     browser.find_element(*BUTTON_ADD_TO_CART).click()
     browser.find_element(*BASKET).click()
     browser.find_element(*BUTTON_REMOVE).click()
@@ -31,7 +31,7 @@ def test_delete_item_from_the_basket(browser, test_auth_positive):
 
 
 # Добавление товара в корзину из карточки товара
-def test_add_item_from_product_card(browser, test_auth_positive):
+def test_add_item_from_product_card(browser, user_auth):
     browser.get('https://www.saucedemo.com/v1/inventory-item.html?id=4')
     browser.find_element(*BUTTON_ADD_TO_CART).click()
     basket_items = browser.find_element(*BASKET_ITEMS).text
@@ -39,7 +39,7 @@ def test_add_item_from_product_card(browser, test_auth_positive):
 
 
 # Удаление товара из корзины через карточку товара
-def test_delete_item_from_product_card(browser, test_auth_positive):
+def test_delete_item_from_product_card(browser, user_auth):
     browser.get('https://www.saucedemo.com/v1/inventory-item.html?id=4')
     browser.find_element(*BUTTON_ADD_TO_CART).click()
     browser.find_element(*BUTTON_REMOVE).click()

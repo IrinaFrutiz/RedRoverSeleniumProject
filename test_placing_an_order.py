@@ -1,6 +1,6 @@
-from test_lesson_1.test_auth import test_auth_positive
 from test_basket import BUTTON_ADD_TO_CART, BASKET
 from faker import Faker
+from test_auth import user_auth
 
 fake = Faker()
 
@@ -15,7 +15,7 @@ THANKS_TEXT = ('xpath', '//h2')
 
 
 # Оформление заказа используя корректные данные
-def test_placing_an_order_using_correct_data(browser, test_auth_positive):
+def test_placing_an_order_using_correct_data(browser, user_auth):
     browser.find_element(*BUTTON_ADD_TO_CART).click()
     browser.find_element(*BASKET).click()
     browser.find_element(*CHECKOUT).click()

@@ -1,4 +1,4 @@
-from test_lesson_1.test_auth import test_auth_positive
+from test_auth import user_auth
 
 ALL_ITEMS_NAMES = ('xpath', '//div[@class="inventory_item_name"]')
 ALL_ITEMS_PRICE = ('xpath', '//div[@class="inventory_item_price"]')
@@ -9,7 +9,7 @@ HIGH_LOW = ('xpath', '//option[4]')
 
 
 # Проверка работоспособности фильтра (A to Z)
-def test_filter_a_to_z(browser, test_auth_positive):
+def test_filter_a_to_z(browser, user_auth):
     items = browser.find_elements(*ALL_ITEMS_NAMES)
     items_name_list = []
     for item_id in range(len(items)):
@@ -21,7 +21,7 @@ def test_filter_a_to_z(browser, test_auth_positive):
 
 
 # Проверка работоспособности фильтра (Z to A)
-def test_filter_z_to_a(browser, test_auth_positive):
+def test_filter_z_to_a(browser, user_auth):
     browser.find_element(*DROPDOWN).click()
     browser.find_element(*Z_A).click()
     items = browser.find_elements(*ALL_ITEMS_NAMES)
@@ -35,7 +35,7 @@ def test_filter_z_to_a(browser, test_auth_positive):
 
 
 # Проверка работоспособности фильтра (low to high)
-def test_filter_low_to_high(browser, test_auth_positive):
+def test_filter_low_to_high(browser, user_auth):
     browser.find_element(*DROPDOWN).click()
     browser.find_element(*LOW_HIGH).click()
     items = browser.find_elements(*ALL_ITEMS_PRICE)
@@ -49,7 +49,7 @@ def test_filter_low_to_high(browser, test_auth_positive):
 
 
 # Проверка работоспособности фильтра (high to low)
-def test_filter_high_to_low(browser, test_auth_positive):
+def test_filter_high_to_low(browser, user_auth):
     browser.find_element(*DROPDOWN).click()
     browser.find_element(*HIGH_LOW).click()
     items = browser.find_elements(*ALL_ITEMS_PRICE)

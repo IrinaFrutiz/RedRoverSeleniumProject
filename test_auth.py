@@ -9,12 +9,14 @@ LOGIN_ERROR = ('xpath', '//h3')
 
 
 @pytest.fixture(scope="function")
-def test_auth_positive(browser):
+def user_auth(browser):
     browser.get(BASE_URL)
-
     browser.find_element(*USER_NAME).send_keys('standard_user')
     browser.find_element(*USER_PASSWORD).send_keys('secret_sauce')
     browser.find_element(*BUTTON_LOGIN).click()
+
+
+def test_auth_positive(browser, user_auth):
     assert browser.current_url == f'{BASE_URL}inventory.html', 'url не соответствует ожидаемому'
     assert browser.title == 'Swag Labs', 'Wrong browser title'
 
