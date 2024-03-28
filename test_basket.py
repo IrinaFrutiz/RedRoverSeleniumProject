@@ -1,4 +1,3 @@
-# import time
 from test_auth import user_auth
 from selenium.common import NoSuchElementException
 
