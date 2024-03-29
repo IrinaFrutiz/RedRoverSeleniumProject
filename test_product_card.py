@@ -1,4 +1,4 @@
-from test_auth import BASE_URL, user_auth
+from test_auth import user_auth, BASE_URL
 
 PRODUCT_IMG = ('xpath', '//*[@id="item_4_img_link"]/img')
 PRODUCT_NAME = ('xpath', '//*[@id="item_4_title_link"]')

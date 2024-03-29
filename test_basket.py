@@ -1,5 +1,5 @@
-from test_auth import user_auth
 from selenium.common import NoSuchElementException
+from test_auth import user_auth
 
 BUTTON_ADD_TO_CART = ('xpath', '//button[text()="ADD TO CART"]')
 BUTTON_REMOVE = ('xpath', '//button[text()="REMOVE"]')

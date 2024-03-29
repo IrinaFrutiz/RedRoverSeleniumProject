@@ -1,4 +1,4 @@
-from test_auth import BASE_URL, user_auth
+from test_auth import user_auth, BASE_URL
 from test_basket import BUTTON_ADD_TO_CART, ITEMS_IN_THE_BASKET
 
 BUTTON_MENU = ('xpath', '//button[text()="Open Menu"]')
