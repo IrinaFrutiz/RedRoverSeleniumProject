@@ -57,8 +57,7 @@ def test_filter_high_to_low(browser, user_auth):
     items_price_list = []
     for item_id in range(len(items)):
         items_price_list.append(float(browser.find_element('xpath',
-                                                           f'(//div[@class="inventory_item_price"])[{item_id + 1}]').text[
-                                      1:]))
+                                            f'(//div[@class="inventory_item_price"])[{item_id + 1}]').text[1:]))
     sorted_list = sorted(items_price_list, reverse=True)
     for i in range(len(items)):
         assert sorted_list[i] == items_price_list[i], f'{sorted_list[i]} != {items_price_list[i]}'

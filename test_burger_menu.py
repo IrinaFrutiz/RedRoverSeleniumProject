@@ -2,7 +2,7 @@ import time
 
 from selenium.common import NoSuchElementException
 
-from test_auth import user_auth, BASE_URL
+from test_auth import user_auth, BUTTON_LOGIN
 from test_basket import BUTTON_ADD_TO_CART, ITEMS_IN_THE_BASKET, BASKET, BASKET_ITEMS
 
 BUTTON_MENU = ('xpath', '//button[text()="Open Menu"]')
@@ -16,17 +16,15 @@ BUTTON_CLOSE = ('xpath', '//button[text()="Close Menu"]')
 def test_user_logout(browser, user_auth):
     browser.find_element(*BUTTON_MENU).click()
     browser.find_element(*BUTTON_LOGOUT).click()
-    assert browser.current_url == f'{BASE_URL}index.html', 'Browser go to another URL'
-    assert browser.title == 'Swag Labs', 'Wrong browser title'
+    assert browser.find_element(*BUTTON_LOGIN), 'Element Login is not found'
 
 
 # Проверка работоспособности кнопки "About" в меню
 def test_about(browser, user_auth):
     browser.find_element(*BUTTON_MENU).click()
     browser.find_element(*BUTTON_ABOUT).click()
-    assert browser.current_url == 'https://saucelabs.com/', "Wrong browser URL"
-    assert browser.title == 'Sauce Labs: Cross Browser Testing, Selenium Testing & Mobile Testing', \
-        "Wrong browser title"
+    assert browser.current_url == 'https://saucelabs.com/' and \
+           browser.title == 'Sauce Labs: Cross Browser Testing, Selenium Testing & Mobile Testing', "Wrong site"
 
 
 # Проверка работоспособности кнопки "Reset App State"

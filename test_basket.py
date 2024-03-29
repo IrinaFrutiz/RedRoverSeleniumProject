@@ -34,7 +34,7 @@ def test_add_item_from_product_card(browser, user_auth):
     browser.get('https://www.saucedemo.com/v1/inventory-item.html?id=4')
     browser.find_element(*BUTTON_ADD_TO_CART).click()
     basket_items = browser.find_element(*BASKET_ITEMS).text
-    assert basket_items == '1', f"There is more or less item in the basket. {basket_items} not equal 1"
+    assert basket_items == '1', f"There are more or less items in the basket. {basket_items} not equal 1"
 
 
 # Удаление товара из корзины через карточку товара
