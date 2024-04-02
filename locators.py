@@ -25,9 +25,10 @@ class Basket:
 
 class Main:
     BUTTON_MENU = ('xpath', '//button[text()="Open Menu"]')
-    BUTTON_LOGOUT = ('xpath', '//*[@id="logout_sidebar_link"]')
-    BUTTON_ABOUT = ('xpath', '//*[@id="about_sidebar_link"]')
-    BUTTON_RESET = ('xpath', '//*[@id="reset_sidebar_link"]')
+    BUTTON_ALL_ITEMS = ('id', 'inventory_sidebar_link')
+    BUTTON_ABOUT = ('id', 'about_sidebar_link')
+    BUTTON_LOGOUT = ('id', 'logout_sidebar_link')
+    BUTTON_RESET = ('id', 'reset_sidebar_link')
     BUTTON_CLOSE = ('xpath', '//button[text()="Close Menu"]')
     ALL_ITEMS_NAMES = ('xpath', '//div[@class="inventory_item_name"]')
     ALL_ITEMS_PRICE = ('xpath', '//div[@class="inventory_item_price"]')

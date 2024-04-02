@@ -2,12 +2,23 @@ from selenium.common import NoSuchElementException
 from locators import Main, Basket, Login
 
 
+# Все элементы меню видны
+def test_all_menu_elements_are_visible(browser, user_auth):
+    browser.find_element(*Main.BUTTON_MENU).click()
+
+    assert browser.find_element(*Main.BUTTON_ALL_ITEMS), "Element All Items in Menu do not present"
+    assert browser.find_element(*Main.BUTTON_ABOUT), "Element About in Menu do not present"
+    assert browser.find_element(*Main.BUTTON_LOGOUT), "Element Logout in Menu do not present"
+    assert browser.find_element(*Main.BUTTON_RESET), "Element Reset App State in Menu do not present"
+    assert browser.find_element(*Main.BUTTON_CLOSE), "Element Close Menu in Menu do not present"
+
+
 # Выход из системы
 def test_user_logout(browser, user_auth):
     browser.find_element(*Main.BUTTON_MENU).click()
     browser.find_element(*Main.BUTTON_LOGOUT).click()
 
-    assert browser.find_element(*Login.BUTTON_LOGIN), 'Element Login is not found'
+    assert browser.find_element(*Login.BUTTON_LOGIN), 'User do not logout'
 
 
 # Проверка работоспособности кнопки "About" в меню
