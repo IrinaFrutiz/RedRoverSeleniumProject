@@ -60,3 +60,18 @@ def test_auth_negative_without_user_data(browser):
         'Wrong Error text on the site'
     assert browser.current_url == URL.BASE_URL, 'Browser go to another URL'
     assert login_button.get_attribute("value") == "LOGIN", "There is no LOGIN button"
+
+
+def test_auth_negative_locked_user(browser):
+    browser.get(URL.BASE_URL)
+    browser.find_element(*Login.USER_NAME).send_keys('locked_out_user')
+    browser.find_element(*Login.USER_PASSWORD).send_keys('secret_sauce')
+    login_button = browser.find_element(*Login.BUTTON_LOGIN)
+    login_button.click()
+
+    error_text = browser.find_element(*Login.LOGIN_ERROR).text
+
+    assert error_text == 'Epic sadface: Sorry, this user has been locked out.', \
+        'Wrong Error text on the site'
+    assert browser.current_url == URL.BASE_URL, 'Browser go to another URL'
+    assert login_button.get_attribute("value") == "LOGIN", "There is no LOGIN button"
