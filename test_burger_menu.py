@@ -28,7 +28,7 @@ def test_about(browser, user_auth):
 
     assert browser.current_url == 'https://saucelabs.com/' and \
            browser.title == 'Sauce Labs: Cross Browser Testing, Selenium Testing & Mobile Testing', \
-           "The site where we go after click about is not correct"
+        "The site where we go after click about is not correct"
 
 
 # Проверка работоспособности кнопки "Reset App State"
@@ -53,3 +53,11 @@ def test_reset_sidebar_link(browser, user_auth):
         assert items_in_the_basket == 0, "Basket is not empty"
     except NoSuchElementException:
         pass
+
+
+def test_check_footer(browser, user_auth):
+    assert browser.find_element(*Main.SOCIAL_MEDIA_TWITTER).text == 'Twitter', "It's not Twitter"
+    assert browser.find_element(*Main.SOCIAL_MEDIA_FACEBOOK).text == 'Facebook', "It's not Facebook"
+    assert browser.find_element(*Main.SOCIAL_MEDIA_LINKEDIN).text == 'LinkedIn', "It's not LinkedIn"
+    assert browser.find_element(*Main.FOOTER).text == \
+           '© 2020 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy', "It's wrong footer text"

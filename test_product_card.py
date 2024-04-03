@@ -1,4 +1,5 @@
-from locators import ProductCard, URL, Main
+from locators import ProductCard, Main
+from data import URL
 
 
 # Успешный переход к карточке товара после клика на картинку товара

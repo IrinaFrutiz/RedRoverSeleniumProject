@@ -1,4 +1,5 @@
-from locators import Login, URL
+from locators import Login
+from data import URL, Data
 
 
 def test_auth_positive(browser, user_auth):
@@ -8,8 +9,8 @@ def test_auth_positive(browser, user_auth):
 
 def test_auth_negative_wrong_pass(browser):
     browser.get(URL.BASE_URL)
-    browser.find_element(*Login.USER_NAME).send_keys('standard_user')
-    browser.find_element(*Login.USER_PASSWORD).send_keys('notsecret_sauce')
+    browser.find_element(*Login.USER_NAME).send_keys(Data.user_correct)
+    browser.find_element(*Login.USER_PASSWORD).send_keys(Data.pass_incorrect)
     login_button = browser.find_element(*Login.BUTTON_LOGIN)
     login_button.click()
 
@@ -21,8 +22,8 @@ def test_auth_negative_wrong_pass(browser):
 
 def test_auth_negative_wrong_username(browser):
     browser.get(URL.BASE_URL)
-    browser.find_element(*Login.USER_NAME).send_keys('standard_userr')
-    browser.find_element(*Login.USER_PASSWORD).send_keys('secret_sauce')
+    browser.find_element(*Login.USER_NAME).send_keys(Data.user_incorrect)
+    browser.find_element(*Login.USER_PASSWORD).send_keys(Data.pass_incorrect)
     login_button = browser.find_element(*Login.BUTTON_LOGIN)
     login_button.click()
 
@@ -36,8 +37,8 @@ def test_auth_negative_wrong_username(browser):
 
 def test_auth_negative_wrong_user_data(browser):
     browser.get(URL.BASE_URL)
-    browser.find_element(*Login.USER_NAME).send_keys('a')
-    browser.find_element(*Login.USER_PASSWORD).send_keys('b')
+    browser.find_element(*Login.USER_NAME).send_keys(Data.user_incorrect)
+    browser.find_element(*Login.USER_PASSWORD).send_keys(Data.pass_incorrect)
     login_button = browser.find_element(*Login.BUTTON_LOGIN)
     login_button.click()
 
@@ -64,8 +65,8 @@ def test_auth_negative_without_user_data(browser):
 
 def test_auth_negative_locked_user(browser):
     browser.get(URL.BASE_URL)
-    browser.find_element(*Login.USER_NAME).send_keys('locked_out_user')
-    browser.find_element(*Login.USER_PASSWORD).send_keys('secret_sauce')
+    browser.find_element(*Login.USER_NAME).send_keys(Data.user_locked)
+    browser.find_element(*Login.USER_PASSWORD).send_keys(Data.pass_correct)
     login_button = browser.find_element(*Login.BUTTON_LOGIN)
     login_button.click()
 

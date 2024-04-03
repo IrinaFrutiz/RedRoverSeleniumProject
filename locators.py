@@ -1,13 +1,7 @@
-class URL:
-    BASE_URL = 'https://www.saucedemo.com/v1/'
-    BACKPACK_URL = BASE_URL + 'inventory-item.html?id=4'
-    PART_OF_PRODUCT_URL = BASE_URL + 'inventory-item.html?id='
-
-
 class Login:
-    USER_NAME = ('xpath', '//*[@id="user-name"]')
-    USER_PASSWORD = ('xpath', '//*[@id="password"]')
-    BUTTON_LOGIN = ('xpath', '//*[@id="login-button"]')
+    USER_NAME = ('id', 'user-name')
+    USER_PASSWORD = ('id', 'password')
+    BUTTON_LOGIN = ('id', 'login-button')
     LOGIN_ERROR = ('xpath', '//h3')
 
 
@@ -15,9 +9,9 @@ class Basket:
     BUTTON_REMOVE = ('xpath', '//button[text()="REMOVE"]')
     ITEMS_IN_THE_BASKET = ('xpath', '//div[@class="cart_item"]')
     CHECKOUT = ('xpath', '//a[@class="btn_action checkout_button"]')
-    INPUT_F_NAME = ('xpath', '//*[@id="first-name"]')
-    INPUT_L_NAME = ('xpath', '//*[@id="last-name"]')
-    INPUT_ZIP = ('xpath', '//*[@id="postal-code"]')
+    INPUT_F_NAME = ('id', 'first-name')
+    INPUT_L_NAME = ('id', 'last-name')
+    INPUT_ZIP = ('id', 'postal-code')
     CONTINUE = ('xpath', '//input[@type="submit"]')
     FINISH = ('xpath', '//*[@id="checkout_summary_container"]//a[2]')
     THANKS_TEXT = ('xpath', '//h2')
@@ -42,6 +36,10 @@ class Main:
     BASKET_ITEMS = ('xpath', '//*[@id="shopping_cart_container"]/a/span')
     BUTTON_ADD_TO_CART = ('xpath', '//button[text()="ADD TO CART"]')
     BUTTON_REMOVE = ('xpath', '//button[text()="REMOVE"]')
+    SOCIAL_MEDIA_TWITTER =('class name', 'social_twitter')
+    SOCIAL_MEDIA_FACEBOOK =('class name', 'social_facebook')
+    SOCIAL_MEDIA_LINKEDIN =('class name', 'social_linkedin')
+    FOOTER =('class name', 'footer_copy')
 
 
 class ProductCard:
