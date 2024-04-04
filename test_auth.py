@@ -9,7 +9,7 @@ def test_auth_positive(browser, user_auth):
 
 def test_auth_negative_wrong_pass(browser):
     browser.get(URL.BASE_URL)
-    browser.find_element(*Login.USER_NAME).send_keys(Data.user_correct)
+    browser.find_element(*Login.USER_NAME).send_keys(Data.USER_CORRECT)
     browser.find_element(*Login.USER_PASSWORD).send_keys(Data.pass_incorrect)
     login_button = browser.find_element(*Login.BUTTON_LOGIN)
     login_button.click()
@@ -65,8 +65,8 @@ def test_auth_negative_without_user_data(browser):
 
 def test_auth_negative_locked_user(browser):
     browser.get(URL.BASE_URL)
-    browser.find_element(*Login.USER_NAME).send_keys(Data.user_locked)
-    browser.find_element(*Login.USER_PASSWORD).send_keys(Data.pass_correct)
+    browser.find_element(*Login.USER_NAME).send_keys(Data.USER_LOCKED)
+    browser.find_element(*Login.USER_PASSWORD).send_keys(Data.PASS_CORRECT)
     login_button = browser.find_element(*Login.BUTTON_LOGIN)
     login_button.click()
 

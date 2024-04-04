@@ -31,7 +31,7 @@ def test_filter_z_to_a(browser, user_auth):
 def test_filter_low_to_high(browser, user_auth):
     browser.find_element(*Main.BUTTON_FILTER).click()
     browser.find_element(*Main.FILTER_LOW_HIGH).click()
-    items = browser.find_elements(*Main.ALL_ITEMS_PRICE)
+    items = browser.find_elements(*Main.ALL_ITEMS_PRICES)
     items_price_list = []
     for item_id in range(len(items)):
         items_price_list.append(float(browser.find_element('xpath', f'(//div[@class="inventory_item_price"])'
@@ -45,7 +45,7 @@ def test_filter_low_to_high(browser, user_auth):
 def test_filter_high_to_low(browser, user_auth):
     browser.find_element(*Main.BUTTON_FILTER).click()
     browser.find_element(*Main.FILTER_HIGH_LOW).click()
-    items = browser.find_elements(*Main.ALL_ITEMS_PRICE)
+    items = browser.find_elements(*Main.ALL_ITEMS_PRICES)
     items_price_list = []
     for item_id in range(len(items)):
         items_price_list.append(float(browser.find_element('xpath', f'(//div[@class="inventory_item_price"])'

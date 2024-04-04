@@ -1,8 +1,5 @@
-import time
-
 from selenium.common import NoSuchElementException
 from locators import Basket, Main, ProductCard
-from data import URL
 import random
 
 
@@ -20,7 +17,7 @@ def test_delete_item_from_the_basket(browser, user_auth):
     product_add = browser.find_elements(*Main.BUTTON_ADD_TO_CART)
     product_add[random.randint(0, len(product_add) - 1)].click()
     browser.find_element(*Main.BUTTON_BASKET).click()
-    browser.find_element(*Basket.BUTTON_REMOVE).click()
+    browser.find_element(*Main.BUTTON_REMOVE).click()
 
     try:
         items_in_the_basket = browser.find_element(*Main.BASKET_ITEMS).text
@@ -53,10 +50,27 @@ def test_delete_item_from_product_card(browser, user_auth):
     product_number = random.randint(0, len(product_names) - 1)
     product_names[product_number].click()
     browser.find_element(*Main.BUTTON_ADD_TO_CART).click()
-    browser.find_element(*Basket.BUTTON_REMOVE).click()
+    browser.find_element(*Main.BUTTON_REMOVE).click()
 
     try:
         items_in_the_basket = browser.find_element(*Main.BASKET_ITEMS).text
         assert items_in_the_basket == 0, "Basket is not empty"
     except NoSuchElementException:
         pass
+
+
+# добавление всех товаров из каталога в корзину
+def test_add_all_products_to_the_basket(browser, user_auth):
+    product_names = browser.find_elements(*Main.ALL_ITEMS_NAMES)
+    lst_product_names = []
+    for name in product_names:
+        lst_product_names.append(name.text)
+    product_add_to_cards = browser.find_elements(*Main.BUTTON_ADD_TO_CART)
+    for add_to_card in product_add_to_cards:
+        add_to_card.click()
+    browser.find_element(*Main.BUTTON_BASKET)
+    product_names_basket = browser.find_elements(*Main.ALL_ITEMS_NAMES)
+    lst_product_names_basket = []
+    for name in product_names_basket:
+        lst_product_names_basket.append(name.text)
+    assert lst_product_names == lst_product_names_basket, ""

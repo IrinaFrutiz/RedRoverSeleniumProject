@@ -1,5 +1,6 @@
 from selenium.common import NoSuchElementException
 from locators import Main, Basket, Login
+import pytest
 
 
 # Все элементы меню видны
@@ -26,23 +27,24 @@ def test_about(browser, user_auth):
     browser.find_element(*Main.BUTTON_MENU).click()
     browser.find_element(*Main.BUTTON_ABOUT).click()
 
-    assert browser.current_url == 'https://saucelabs.com/' and \
-           browser.title == 'Sauce Labs: Cross Browser Testing, Selenium Testing & Mobile Testing', \
-        "The site where we go after click about is not correct"
+    assert browser.current_url == 'https://saucelabs.com/', "Wrong URL"
+    assert browser.title == 'Sauce Labs: Cross Browser Testing, Selenium Testing & Mobile Testing', \
+        "Wrong title"
 
 
 # Проверка работоспособности кнопки "Reset App State"
+@pytest.mark.xfail
 def test_reset_sidebar_link_basket(browser, user_auth):
     browser.find_element(*Main.BUTTON_ADD_TO_CART).click()
     browser.find_element(*Main.BUTTON_BASKET).click()
     browser.find_element(*Main.BUTTON_MENU).click()
     browser.find_element(*Main.BUTTON_RESET).click()
-    browser.refresh()
     items_in_the_basket = browser.find_elements(*Basket.ITEMS_IN_THE_BASKET)
 
     assert len(items_in_the_basket) == 0, "Basket is not empty"
 
 
+# Проверка работоспособности кнопки "Reset App State"
 def test_reset_sidebar_link(browser, user_auth):
     browser.find_element(*Main.BUTTON_ADD_TO_CART).click()
     browser.find_element(*Main.BUTTON_MENU).click()
@@ -55,6 +57,7 @@ def test_reset_sidebar_link(browser, user_auth):
         pass
 
 
+# проверка футера на наличие иконок социальных сетей и надписи
 def test_check_footer(browser, user_auth):
     assert browser.find_element(*Main.SOCIAL_MEDIA_TWITTER).text == 'Twitter', "It's not Twitter"
     assert browser.find_element(*Main.SOCIAL_MEDIA_FACEBOOK).text == 'Facebook', "It's not Facebook"

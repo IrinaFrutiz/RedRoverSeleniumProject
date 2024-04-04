@@ -5,10 +5,15 @@ class URL:
 
 
 class Data:
-    user_correct = 'standard_user'
+    USER_CORRECT = 'standard_user'
     user_incorrect = 'a'
-    user_locked = 'locked_out_user'
-    user_problem = 'problem_user'
-    user_performance = 'performance_glitch_user'
-    pass_correct = 'secret_sauce'
+    USER_LOCKED = 'locked_out_user'
+    USER_PROBLEM = 'problem_user'
+    USER_PERFORMANCE = 'performance_glitch_user'
+    PASS_CORRECT = 'secret_sauce'
     pass_incorrect = 'bsecret_sauce'
+
+
+def random_number(num):
+    import random
+    return random.randint(0, num - 1)
