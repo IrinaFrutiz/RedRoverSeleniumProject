@@ -1,12 +1,12 @@
 from selenium.common import NoSuchElementException
 from locators import Basket, Main, ProductCard
-import random
+from data import URL, random_number
 
 
 # Добавление товара в корзину через каталог
 def test_add_item_from_catalog(browser, user_auth):
     product_add = browser.find_elements(*Main.BUTTON_ADD_TO_CART)
-    product_add[random.randint(0, len(product_add) - 1)].click()
+    product_add[random_number(len(product_add))].click()
     basket_items = browser.find_element(*Main.BASKET_ITEMS).text
 
     assert basket_items == '1', f"There is more or less item in the basket. {basket_items} not equal 1"
@@ -15,7 +15,7 @@ def test_add_item_from_catalog(browser, user_auth):
 # Удаление товара из корзины через корзину
 def test_delete_item_from_the_basket(browser, user_auth):
     product_add = browser.find_elements(*Main.BUTTON_ADD_TO_CART)
-    product_add[random.randint(0, len(product_add) - 1)].click()
+    product_add[random_number(len(product_add))].click()
     browser.find_element(*Main.BUTTON_BASKET).click()
     browser.find_element(*Main.BUTTON_REMOVE).click()
 
@@ -32,7 +32,7 @@ def test_delete_item_from_the_basket(browser, user_auth):
 # Добавление товара в корзину из карточки товара
 def test_add_item_from_product_card(browser, user_auth):
     product_names = browser.find_elements(*Main.ALL_ITEMS_NAMES)
-    product_number = random.randint(0, len(product_names) - 1)
+    product_number = random_number(len(product_names))
     product_name = product_names[product_number].text
     product_names[product_number].click()
     browser.find_element(*Main.BUTTON_ADD_TO_CART).click()
@@ -47,7 +47,7 @@ def test_add_item_from_product_card(browser, user_auth):
 # Удаление товара из корзины через карточку товара
 def test_delete_item_from_product_card(browser, user_auth):
     product_names = browser.find_elements(*Main.ALL_ITEMS_NAMES)
-    product_number = random.randint(0, len(product_names) - 1)
+    product_number = random_number(len(product_names))
     product_names[product_number].click()
     browser.find_element(*Main.BUTTON_ADD_TO_CART).click()
     browser.find_element(*Main.BUTTON_REMOVE).click()
@@ -74,3 +74,14 @@ def test_add_all_products_to_the_basket(browser, user_auth):
     for name in product_names_basket:
         lst_product_names_basket.append(name.text)
     assert lst_product_names == lst_product_names_basket, ""
+
+
+# continue shopping
+def test_continue_shoppint_button(browser, user_auth):
+    product_add = browser.find_elements(*Main.BUTTON_ADD_TO_CART)
+    product_add[random_number(len(product_add))].click()
+    browser.find_element(*Main.BUTTON_BASKET).click()
+    browser.find_element(*Basket.CONTINUE_SHOPPING).click()
+
+    assert browser.current_url == URL.MAIN_URL, 'Wrong URL'
+    assert browser.find_elements(*Main.ALL_ITEMS_NAMES), "Can't find product's name on the page"

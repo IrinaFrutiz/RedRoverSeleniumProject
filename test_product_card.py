@@ -26,7 +26,7 @@ def test_go_to_product_card_name(browser, user_auth):
     browser.find_element(*ProductCard.BACK).click()
 
 
-# сравнение описания товара на главной странице и в карточке + back
+# сравнение описания товара на главной странице и в карточке
 def test_check_product_descriptions(browser, user_auth):
     product_names = browser.find_elements(*Main.ALL_ITEMS_NAMES)
     product_descriptions = browser.find_elements(*Main.ALL_ITEMS_DESCRIPTIONS)
@@ -65,3 +65,25 @@ def test_check_product_page_from_basket(browser, user_auth):
     assert name_basket == browser.find_element(*ProductCard.PRODUCT_NAME).text, \
         "The product name in your cart does not match the product name on the product page."
     assert URL.PART_OF_PRODUCT_URL in browser.current_url, "Wrong URL"
+
+
+# проверка возвращения на main страницу через меню
+def test_go_to_all_items(browser, user_auth):
+    product_names = browser.find_elements(*Main.ALL_ITEMS_NAMES)
+    number_of_product = random_number(len(product_names))
+    product_names[number_of_product].click()
+    browser.find_element(*Main.BUTTON_MENU).click()
+    browser.find_element(*Main.BUTTON_ALL_ITEMS).click()
+
+    assert browser.find_element(*Main.ALL_ITEMS_NAMES), "Can't find product's name on the page"
+    assert browser.current_url == URL.MAIN_URL, 'Wrong URL'
+
+
+# проверка что футера main страницы нет на продуктовой
+def test_mains_footer_dont_present(browser, user_auth):
+    product_names = browser.find_elements(*Main.ALL_ITEMS_NAMES)
+    number_of_product = random_number(len(product_names))
+    product_names[number_of_product].click()
+    footer = browser.find_elements(*Main.FOOTER)
+
+    assert len(footer) == 0, "Footer are present on product page"

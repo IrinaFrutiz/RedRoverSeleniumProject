@@ -40,6 +40,7 @@ class Main:
     SOCIAL_MEDIA_FACEBOOK = ('class name', 'social_facebook')
     SOCIAL_MEDIA_LINKEDIN = ('class name', 'social_linkedin')
     FOOTER = ('class name', 'footer_copy')
+    ERROR = ('xpath', '//h3')
 
 
 class ProductCard:

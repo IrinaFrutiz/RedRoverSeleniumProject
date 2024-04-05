@@ -1,5 +1,6 @@
 class URL:
     BASE_URL = 'https://www.saucedemo.com/v1/'
+    MAIN_URL = BASE_URL + 'inventory.html'
     BACKPACK_URL = BASE_URL + 'inventory-item.html?id=4'
     PART_OF_PRODUCT_URL = BASE_URL + 'inventory-item.html?id='
 
@@ -17,3 +18,9 @@ class Data:
 def random_number(num):
     import random
     return random.randint(0, num - 1)
+
+
+def fake_data():
+    from faker import Faker
+    fake = Faker()
+    return fake.first_name(), fake.last_name(), fake.postcode()
