@@ -79,7 +79,7 @@ def test_go_to_all_items(browser, user_auth):
     assert browser.current_url == URL.MAIN_URL, 'Wrong URL'
 
 
-# проверка что футера main страницы нет на продуктовой
+# проверка того, что футера main страницы нет на продуктовой
 def test_mains_footer_dont_present(browser, user_auth):
     product_names = browser.find_elements(*Main.ALL_ITEMS_NAMES)
     number_of_product = random_number(len(product_names))

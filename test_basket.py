@@ -1,4 +1,3 @@
-from selenium.common import NoSuchElementException
 from locators import Basket, Main, ProductCard
 from data import URL, random_number
 
@@ -19,14 +18,7 @@ def test_delete_item_from_the_basket(browser, user_auth):
     browser.find_element(*Main.BUTTON_BASKET).click()
     browser.find_element(*Main.BUTTON_REMOVE).click()
 
-    try:
-        items_in_the_basket = browser.find_element(*Main.BASKET_ITEMS).text
-        assert items_in_the_basket == 0, "Basket is not empty"
-    except NoSuchElementException:
-        pass
-    items_in_the_basket = browser.find_elements(*Basket.ITEMS_IN_THE_BASKET)
-
-    assert len(items_in_the_basket) == 0, "Basket is not empty"
+    assert len(browser.find_elements(*Basket.ITEMS_IN_THE_BASKET)) == 0, "Basket is not empty"
 
 
 # Добавление товара в корзину из карточки товара
@@ -52,11 +44,7 @@ def test_delete_item_from_product_card(browser, user_auth):
     browser.find_element(*Main.BUTTON_ADD_TO_CART).click()
     browser.find_element(*Main.BUTTON_REMOVE).click()
 
-    try:
-        items_in_the_basket = browser.find_element(*Main.BASKET_ITEMS).text
-        assert items_in_the_basket == 0, "Basket is not empty"
-    except NoSuchElementException:
-        pass
+    assert len(browser.find_elements(*Basket.ITEMS_IN_THE_BASKET)) == 0, "Basket is not empty"
 
 
 # добавление всех товаров из каталога в корзину
@@ -68,7 +56,7 @@ def test_add_all_products_to_the_basket(browser, user_auth):
     product_add_to_cards = browser.find_elements(*Main.BUTTON_ADD_TO_CART)
     for add_to_card in product_add_to_cards:
         add_to_card.click()
-    browser.find_element(*Main.BUTTON_BASKET)
+    browser.find_element(*Main.BUTTON_BASKET).click()
     product_names_basket = browser.find_elements(*Main.ALL_ITEMS_NAMES)
     lst_product_names_basket = []
     for name in product_names_basket:
@@ -77,7 +65,7 @@ def test_add_all_products_to_the_basket(browser, user_auth):
 
 
 # continue shopping
-def test_continue_shoppint_button(browser, user_auth):
+def test_continue_shopping_button(browser, user_auth):
     product_add = browser.find_elements(*Main.BUTTON_ADD_TO_CART)
     product_add[random_number(len(product_add))].click()
     browser.find_element(*Main.BUTTON_BASKET).click()
