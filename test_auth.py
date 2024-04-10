@@ -3,7 +3,7 @@ from data import URL, Data
 
 
 def test_auth_positive(browser, user_auth):
-    assert browser.current_url == f'{URL.BASE_URL}inventory.html', 'url не соответствует ожидаемому'
+    assert browser.current_url == f'{URL.MAIN_URL}', 'url не соответствует ожидаемому'
     assert browser.title == 'Swag Labs', 'Wrong browser title'
 
 

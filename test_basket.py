@@ -61,7 +61,8 @@ def test_add_all_products_to_the_basket(browser, user_auth):
     lst_product_names_basket = []
     for name in product_names_basket:
         lst_product_names_basket.append(name.text)
-    assert lst_product_names == lst_product_names_basket, ""
+
+    assert lst_product_names == lst_product_names_basket, "Product's names don't much"
 
 
 # continue shopping

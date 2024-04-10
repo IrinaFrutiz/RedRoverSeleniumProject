@@ -19,7 +19,7 @@ def test_user_logout(browser, user_auth):
     browser.find_element(*Main.BUTTON_MENU).click()
     browser.find_element(*Main.BUTTON_LOGOUT).click()
 
-    assert browser.find_element(*Login.BUTTON_LOGIN), 'User do not logout'
+    assert browser.find_element(*Login.BUTTON_LOGIN), "User can't logout"
 
 
 # Проверка работоспособности кнопки "About" в меню
